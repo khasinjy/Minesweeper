@@ -169,9 +169,9 @@ namespace MinesweeperWPF
             if (button.Content == null)
             {
                 string imageName = caseValue >= 10 ? "bomb" : this.getBombOrFlag(caseValue);
-                string uri = String.Format("C:\\Users\\Khasinjy\\source\\repos\\Minesweeper\\Minesweeper\\resources\\{0}.png", imageName);
+                string uri = String.Format("..\\..\\..\\..\\Minesweeper\\resources\\{0}.png", imageName);
                 Image image = new Image();
-                image.Source = new BitmapImage(new Uri(uri, UriKind.Absolute));
+                image.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(uri)));
                 button.Content = image;
                 disabledButton(caseValue);
                 if (caseValue != 9) this.nbCasesRevealed++;
