@@ -15,21 +15,8 @@
             this.nbMines = difficulty.Item2;
             this.board = new int[this.length, this.length];
             this.flagged = new Dictionary<Tuple<int,int>, int>();
-            initBoard();
             placeMines();
         }
-        private void initBoard()
-        {
-            for (int i = 0; i < this.length; i++)
-            {
-                for (int j = 0; j < this.length; j++)
-                {
-                    this.board[i, j] = 0;
-                }
-            }
-
-        }
-
         private void placeMines()
         {
             Random rnd = new Random();
