@@ -35,7 +35,7 @@ namespace MinesweeperWPF
         }
         private void startGame()
         {
-            this.myGame = new Game();
+            this.myGame = new Game(Difficulty.EASY);
             this.timeElapsed = 0;
             this.button = null;
             this.nbCasesRevealed = 0;

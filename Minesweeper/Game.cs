@@ -9,10 +9,10 @@
 
         public Dictionary<Tuple<int,int>, int> flagged { get; set; }
 
-        public Game()
+        public Game(Tuple<int, int> difficulty)
         {
-            this.nbMines = 6;
-            this.length = 10;
+            this.length = difficulty.Item1;
+            this.nbMines = difficulty.Item2;
             this.board = new int[this.length, this.length];
             this.flagged = new Dictionary<Tuple<int,int>, int>();
             initBoard();
