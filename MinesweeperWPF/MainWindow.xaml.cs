@@ -46,23 +46,32 @@ namespace MinesweeperWPF
 
         }
 
+        private void endGame(Boolean win)
+        {
+            this.timer.Stop();
+            this.showAllBombs();
+            string message = win
+                ? String.Format("Tu as gagné en {0} secondes.", (timeElapsed - 1))
+                : "Tu as perdu.";
+            MessageBox.Show(message);
+            restartGame();
+
+        }
+
+        private void restartGame()
+        {
+            MainWindow newWindow = new MainWindow();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
+            this.Close();
+        }
+
         void timer_Tick(object sender, EventArgs e)
         {
             this.Dispatcher.BeginInvoke(new Action(() =>
                 this.time.Content = timeElapsed++
             ));
         }
-
-        private void endGame(Boolean win)
-        {
-            this.timer.Stop();
-            this.showAllBombs();
-            if (win) MessageBox.Show("Tu as gagné en " + (timeElapsed - 1) + " secondes.");
-            else MessageBox.Show("Tu as perdu.");
-            this.startGame();
-
-        }
-
         private void showAllBombs()
         {
             for (int i = 0; i < myGame.length; i++)
@@ -82,8 +91,6 @@ namespace MinesweeperWPF
 
         private void createGrid()
         {
-            this.myBoard.RowDefinitions.Clear();
-            this.myBoard.ColumnDefinitions.Clear();
             for (int i = 0; i < myGame.board.GetLength(0); i++)
             {
                 this.myBoard.RowDefinitions.Add(new RowDefinition());
@@ -108,7 +115,7 @@ namespace MinesweeperWPF
             Grid.SetColumn(button, i);
             Grid.SetRow(button, j);
             this.myBoard.Children.Add(button);
-            if (this.FindName(button.Name) == null) RegisterName(button.Name, button);
+            RegisterName(button.Name, button);
         }
 
         private void OnClickLeft(object sender, MouseButtonEventArgs e)
