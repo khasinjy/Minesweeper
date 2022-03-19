@@ -1,0 +1,18 @@
+﻿<Window x:Class="MinesweeperWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinesweeperWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="600"
+        ResizeMode="NoResize">
+    <WrapPanel>
+        <Label Name="nb" Content="Mines: " VerticalAlignment="Center" Width="100"  FontFamily="Noto Serif Light" Height="64" FontSize="30"/>
+        <Label Name="nbMinesLabel" Content="0" VerticalAlignment="Top" Width="150"  FontFamily="Noto Serif Light" Height="64" FontSize="30"/>
+        <Label x:Name="time" Content="0" VerticalAlignment="Center" Width="168"  FontFamily="Noto Serif Light" Height="64" FontSize="30" Margin="139,0,0,0"/>
+        <Grid x:Name="myBoard" Height="548" Width="588" Background="Gray"/>
+    </WrapPanel>
+
+
+</Window>
