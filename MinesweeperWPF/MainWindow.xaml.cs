@@ -40,15 +40,10 @@ namespace MinesweeperWPF
             this.button = null;
             this.nbCasesRevealed = 0;
             this.nbSafeCases = (myGame.length * myGame.length) - myGame.nbMines;
-            displayNbMines();
+            this.nbMinesLabel.Content = this.myGame.nbMines; //display the label number of mines
             createGrid();
             this.timer.Start();
 
-        }
-
-        private void displayNbMines()
-        {
-            this.nbMinesLabel.Content = this.myGame.nbMines;
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -61,14 +56,14 @@ namespace MinesweeperWPF
         private void endGame(Boolean win)
         {
             this.timer.Stop();
-            this.revealBombs();
+            this.showAllBombs();
             if (win) MessageBox.Show("Tu as gagné en " + (timeElapsed - 1) + " secondes.");
             else MessageBox.Show("Tu as perdu.");
             this.startGame();
 
         }
 
-        private void revealBombs()
+        private void showAllBombs()
         {
             for (int i = 0; i < myGame.length; i++)
             {
@@ -124,12 +119,12 @@ namespace MinesweeperWPF
             int column = tag.Item2;
             int caseValue = myGame.board[line, column];
             setImageToButton(caseValue);
-            if (caseValue == 0) revealAjdCases(line, column);
+            if (caseValue == 0) showAdjacentCases(line, column);
             else if (caseValue >= 10) this.endGame(false);
 
         }
 
-        public void revealAjdCases(int line, int column)
+        public void showAdjacentCases(int line, int column)
         {
 
             int maxLength = myGame.length - 1;
@@ -154,7 +149,7 @@ namespace MinesweeperWPF
                         if (caseValue == 0)
                         {
                             myGame.board[i, j] = 8; //set a value to declare the case has been revealed
-                            revealAjdCases(i, j);
+                            showAdjacentCases(i, j);
                         }
 
                     }
